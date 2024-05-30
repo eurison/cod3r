@@ -7,7 +7,7 @@ export default function Home() {
     <div className="flex flex-col gap-10 p-10 h-screen">
       <Titulo 
         principal="Bem-vindo ao Ignite Lab"
-        secundario="Crie e gerencie seus projetos"
+        secundario="Aqui você encontra todas as aulas disponíveis"
         icon={IconVideo}
       />
 
