@@ -1,17 +1,56 @@
-import ListaAulas from "@/components/aulas/ListaAulas";
-import Titulo from "@/components/shared/Titulo";
-import { IconVideo } from "@tabler/icons-react";
+'use client'
+
+import { IconClock, IconVideo } from '@tabler/icons-react'
+
+import Duracao from '@/data/utils/Duracao'
+import Estatistica from '@/components/shared/Estatistica'
+import FiltrarStatus from '@/components/aulas/FiltrarStatus'
+import ListaAulas from '@/components/aulas/ListaAulas'
+import Titulo from '@/components/shared/Titulo'
+import useAulas from '@/data/hook/useAulas'
 
 export default function Home() {
-  return (
-    <div className="flex flex-col gap-10 p-10 h-screen">
-      <Titulo 
-        principal="Bem-vindo ao Ignite Lab"
-        secundario="Aqui você encontra todas as aulas disponíveis"
-        icon={IconVideo}
-      />
+    const { aulas, duracaoTotal, filtrarAulas } = useAulas()
 
-      <ListaAulas />
-    </div>
-  );
+    return (
+        <div className="flex flex-col gap-10 p-10 h-screen">
+            <div className="flex items-center justify-between">
+                <Titulo
+                    icone={IconVideo}
+                    principal="Lista de Aulas"
+                    secundario="Aqui você encontra todas as aulas disponíveis"
+                />
+                <FiltrarStatus filtroMudou={filtrarAulas} />
+            </div>
+            <div className="flex flex-col gap-10">
+                <div className="grid grid-cols-4 gap-5">
+                    <Estatistica
+                        icone={IconClock}
+                        valor={Duracao.formatar(duracaoTotal)}
+                        iconeCor="text-green-500"
+                        texto="Duração Total"
+                    />
+                    <Estatistica
+                        icone={IconClock}
+                        valor={Duracao.formatar(duracaoTotal)}
+                        iconeCor="text-yellow-500"
+                        texto="Duração Total"
+                    />
+                    <Estatistica
+                        icone={IconClock}
+                        valor={Duracao.formatar(duracaoTotal)}
+                        iconeCor="text-purple-500"
+                        texto="Duração Total"
+                    />
+                    <Estatistica
+                        icone={IconClock}
+                        valor={Duracao.formatar(duracaoTotal)}
+                        iconeCor="text-cyan-500"
+                        texto="Duração Total"
+                    />
+                </div>
+                <ListaAulas aulas={aulas} />
+            </div>
+        </div>
+    )
 }
